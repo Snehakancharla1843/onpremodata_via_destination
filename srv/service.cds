@@ -1,5 +1,10 @@
-using employee from '../db/schema';
 
 service EmployeeService {
-  entity Employees as projection on employee.Employees;
+    entity Employees {
+        key Empid : Integer;
+        Empname   : String;
+        Dept      : String;
+        Location  : String;
+        Salary    : Decimal(12,2);
+    }
 }
