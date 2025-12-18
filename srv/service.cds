@@ -1,7 +1,16 @@
-using { my.student as db } from '../db/schema';
+service EmployeeService  @(requires:'authenticated-user') {
 
+   @(odata.draft.enabled)
+  //  @restrict : [
+  //    { grant: '*',    to: 'AdminRole' },
+  //   {grant:'READ', to: 'ViewerRole'}
 
-service EmployeeService @(path:'/odata/v4/emp-direct') {
+  //  ]
+
+  //    @restrict: [
+  //   { grant: '*',    to: 'AdminRole' },
+  //   { grant: 'READ', to: 'ViewerRole' }
+  // ]
   entity Employees {
     key Empid : Integer;
     Empname   : String;

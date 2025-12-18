@@ -7,17 +7,17 @@
     "applicationVersion": {
       "version": "0.0.1"
     },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
+    "title": "{{Employee}}",
+    "description": "{{Employee Data Description}}",
     "resources": "resources.json",
     "sourceTemplate": {
-      "id": "@sap/generator-fiori:basic",
+      "id": "@sap/generator-fiori:lrop",
       "version": "1.20.0",
-      "toolsId": "5390c649-c8e9-4b19-ad10-2fc22861d93d"
+      "toolsId": "9ea3c3b2-6427-405e-9edb-622fe2ff824d"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/employee/",
+        "uri": "/odata/v4/emp-direct/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -48,7 +48,8 @@
       "minUI5Version": "1.143.2",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
       }
     },
     "contentDensities": {
@@ -63,56 +64,93 @@
         }
       },
       "": {
-        "type": "sap.ui.model.odata.v4.ODataModel",
+        "dataSource": "mainService",
+        "preload": true,
         "settings": {
-          "serviceUrl": "/odata/v4/employee/",
-          "synchronizationMode": "None",
           "operationMode": "Server",
           "autoExpandSelect": true,
           "earlyRequests": true
         }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
       }
     },
     "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
+      "css": []
     },
     "routing": {
-      "config": {
-        "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "transition": "slide",
-        "type": "View",
-        "viewType": "XML",
-        "path": "project1.view",
-        "async": true,
-        "viewPath": "project1.view"
-      },
+      "config": {},
       "routes": [
         {
-          "name": "RouteView1",
           "pattern": ":?query:",
-          "target": [
-            "TargetView1"
-          ]
+          "name": "EmployeesList",
+          "target": "EmployeesList"
+        },
+        {
+          "pattern": "Employees({key}):?query:",
+          "name": "EmployeesObjectPage",
+          "target": "EmployeesObjectPage"
         }
       ],
       "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "EmployeesList": {
+          "type": "Component",
+          "id": "EmployeesList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Employees",
+              "variantManagement": "Page",
+              "navigation": {
+                "Employees": {
+                  "detail": {
+                    "route": "EmployeesObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "EmployeesObjectPage": {
+          "type": "Component",
+          "id": "EmployeesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Employees"
+            }
+          }
         }
       }
     },
-    "rootView": {
-      "viewName": "project1.view.App",
-      "type": "XML",
-      "id": "App",
-      "async": true
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#project1::EmployeesObjectPage": {
+            "controllerNames": [
+              "project1.ext.controller.Button",
+              "project1.ext.controller.Submit"
+            ]
+          },
+          "sap.fe.templates.ListReport.ListReportController#project1::EmployeesList": {
+            "controllerName": "project1.ext.controller.Action"
+          }
+        }
+      }
     }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
   }
 }

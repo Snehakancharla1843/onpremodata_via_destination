@@ -1,13 +1,13 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Fri Dec 12 2025 09:57:54 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Thu Dec 18 2025 03:45:52 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
 |**App Generator Version**<br>1.20.0|
 |**Generation Platform**<br>SAP Business Application Studio|
-|**Template Used**<br>Basic V4|
+|**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local CAP|
-|**Service URL**<br>http://localhost:4004/odata/v4/employee/|
+|**Service URL**<br>http://localhost:4004/odata/v4/emp-direct/|
 |**Module Name**<br>project1|
 |**Application Title**<br>App Title|
 |**Namespace**<br>|
@@ -16,6 +16,7 @@
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
+|**Main Entity**<br>Employees|
 
 ## project1
 
@@ -25,7 +26,7 @@ An SAP Fiori application.
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  To launch the generated app, start your CAP project:  and navigate to the following location in your browser:
 
-http://localhost:4004/project1/webapp/index.html
+http://localhost:4004/project1/index.html
 
 #### Pre-requisites:
 

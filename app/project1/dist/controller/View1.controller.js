@@ -1,2 +1,0 @@
-sap.ui.define(["sap/ui/core/mvc/Controller","sap/m/MessageToast"],function(e,n){"use strict";return e.extend("project1.controller.View1",{onInit:function(){},onRefresh:function(){const e=this.byId("idEmployeeTable");const t=e&&e.getBinding("items");if(t){t.refresh();n.show("Data refreshed")}}})});
-//# sourceMappingURL=View1.controller.js.map
